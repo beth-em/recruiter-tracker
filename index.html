@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruite - Candidate Management</title>
+
+    <style>
+
+    </style>
+</head>
+<body>
+    <!-- Main application container -->
+     <div class="app-container">
+        <!-- Collapsible sidbar -->
+         <div class="sidebar" id="sidebar">
+            <!-- Sidebar header with logo and toggle button -->
+             <div class="sidebar-header">
+                <div class="logo">Recruiter Tracker</div>
+                <button class="toggle-btn" id="toggleSidebar">☰</button>
+             </div>
+
+             <!-- Navigation tabs-->
+              <div class="nav-tabs">
+                <div class="nav-tab active" data-tab="kanban">
+                    <span class="nav-tab-icon">📊</span>
+                    <span class="nav-tab-text">Kanban Board</span>
+                </div>
+                <div class="nav-tab active" data-tab="profile">
+                    <span class="nav-tab-icon">📊</span>
+                    <span class="nav-tab-text">Profile</span>
+                </div>
+                <div class="nav-tab active" data-tab="contacts">
+                    <span class="nav-tab-icon">📊</span>
+                    <span class="nav-tab-text">Contacts</span>
+                </div>
+                <div class="nav-tab active" data-tab="documents">
+                    <span class="nav-tab-icon">📊</span>
+                    <span class="nav-tab-text">Documents</span>
+                </div>
+                <div class="nav-tab active" data-tab="calendar">
+                    <span class="nav-tab-icon">📊</span>
+                    <span class="nav-tab-text">Calendar</span>
+                </div>
+            </div>
+         </div>
+
+         <!-- Main content area -->
+         <div class="main-content">
+            <!-- Kanban board section -->
+            <div id="kanban-content" class="tab-content active">
+                <!-- Header with title and add button -->
+                <div class="header">
+                    <h1>Candidate Pipeline</h1>
+                    <button class="add-btn" id="addCandidateBtn">+ Add Candidate</button>
+                </div>
+
+                <!-- Kanban board with 5 columns -->
+                 <div class="kanban-board">
+                    <!-- All candidates -->
+                    <div class="kanban-column column-all" data-status="all">
+                        <div class="column-header">
+                            <div class="column-title">All Candidates</div>
+                            <div class="column-count">0 Candidates</div>
+                        </div>
+                        <div class="cards-container"></div>
+                    </div>
+
+                    <!-- Applied Column-->
+                    <div class="kanban-column column-applied" data-status="applied">
+                        <div class="column-header">
+                            <div class="column-title">Applied</div>
+                            <div class="column-count">0 Candidates</div>
+                        </div>
+                        <div class="cards-container"></div>
+                    </div>
+
+                    <!-- Interviewed Columns -->
+                    <div class="kanban-column column-interviewed" data-status="interviewed">
+                        <div class="column-header">
+                            <div class="column-title">Interviewed</div>
+                            <div class="column-count">0 Candidates</div>
+                        </div>
+                        <div class="cards-container"></div>
+                    </div>
+
+                    <!-- Offers Column -->
+                    <div class="kanban-column column-offers" data-status="offers">
+                        <div class="column-header">
+                            <div class="column-title">Offers</div>
+                            <div class="column-count">0 Candidates</div>
+                        </div>
+                        <div class="cards-container"></div>
+                    </div>
+
+                    <!-- Rejected Column -->
+                    <div class="kanban-column column-rejected" data-status="Rejected">
+                        <div class="column-header">
+                            <div class="column-title">Rejected</div>
+                            <div class="column-count">0 Candidates</div>
+                        </div>
+                        <div class="cards-container"></div>
+                    </div>
+                 </div>
+            </div>
+
+            <!-- Profile tab content -->
+             <div id="profile-content" class="tab-content">
+                <h2>Profile Settings</h2>
+                <p>Manage your recruiter profile and settings here.</p>
+                <div class="form-group">
+                    <label class="form-label">Company Name</label>
+                    <input type="text" class="form-input" placeholder="Enter your company name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Your Name</label>
+                    <input type="text" class="form-input" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" id="form-input" placeholder="Enter your email">
+                </div>
+            
+            <!-- Contacts tab content -->
+             <div id="contacts-content" class="tab-content">
+                <h2>Contact Management</h2>
+                <p>Manage your professional contacts and networking connections here.</p>
+                <button class="add-btn" style="margin-bottom: 20px;">+ Add Contact</button>
+                <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                    <p>No contacts added yet. Click the button above to add your first contact</p>
+                </div>
+             </div>
+
+             <!-- Documents tab content -->
+              <div id="documents-content" class="tab-content">
+                <h2>Document Storage</h2>
+                <p>Store and manage resumes, cover letters, and other candidate documents</p>
+                <button class="add-btn" style="margin-bottom: 20px;">= Upload Document</button>
+                <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                    <p>No documents uploaded yet. Use the button above to upload your first document.</p>
+                </div>
+              </div>
+
+              <!-- Calender tab content -->
+               <div id="calender-content" class="tab-content">
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <button class="calendar-nav" id="prevMonth">(</button>
+                            <div class="calendar-title" id="currentMonth"></div>
+                            <button class="calendar-nav" id="nextMonth">)</button>
+                        </div>
+                        <div>
+                            <!-- Calender will be generate by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+             </div>
+         </div>
+
+         <!-- Modal for adding new candidates -->
+        <div id="candidateModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <h2>Add New Candidates</h2>
+                <form id="candidateForm">
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" id="candidateName" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Position</label>
+                        <input type="text" id="candidatePosition" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="text" id="candidateEmail" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Status</label>
+                        <select id="candidateStatus" class="form-select" required>
+                            <option value="all">All Candidates</option>
+                            <option value="applied">Applied</option>
+                            <option value="interviewed">Interviewed</option>
+                            <option value="offers">Offers</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Add Candidate</button>
+                </form>
+            </div>
+        </div>
+     </div>
+    
+</body>
+</html>
